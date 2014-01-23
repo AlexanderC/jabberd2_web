@@ -1,4 +1,0 @@
-AuthType Basic
-AuthName "You may login first..."
-AuthUserFile /var/www/chat/.htpasswd
-Require valid-user
