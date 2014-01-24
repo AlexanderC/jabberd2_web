@@ -1,3 +1,15 @@
 .hidden {
     opacity: 0;
 }
+
+.height-200 {
+    height: 200px !important;
+}
+
+.width-330 {
+    width: 330px !important;
+}
+
+.text-small {
+    font-size: 0.9em;
+}

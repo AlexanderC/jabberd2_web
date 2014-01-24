@@ -9,6 +9,9 @@
 	<li>
 		<a href="?action=users">Manage Users</a>
 	</li>
+    <li>
+        <a href="?action=sendMessage">Send Message</a>
+    </li>
 </ul>
 
 <?php $content = ob_get_clean(); ?>

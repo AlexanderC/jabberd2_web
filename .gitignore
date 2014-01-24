@@ -1,1 +1,5 @@
 .idea/*
+composer.phar
+composer.json
+composer.lock
+tmp/*
