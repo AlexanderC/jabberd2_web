@@ -1,53 +1,45 @@
-<style>
-table { border-collapse: collapse; font-family: Futura, Arial, sans-serif; border: 1px solid #777; }
-caption { font-size: larger; margin: 1em auto; }
-th, td { padding: .65em; }
-th, thead { background: #000; color: #fff; border: 1px solid #000; }
-tr:nth-child(odd) { background: #ccc; }
-tr:hover { background: #aaa; }
-td { border-right: 1px solid #777; }
-
-.hidden {
-	opacity: 0;
-}
-</style>
-
-<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+<?php @ob_end_flush(); ob_start(); ?>
 
 <a href="?">Go Back!</a>
 <hr/>
 
-<table>
+<table class="table table-striped table-bordered table-condensed">
 	<thead>
-		<th>Username</th>
-		<th>Alias</th>
-		<th>Realm</th>
-		<th>Password</th>
-		<th>Actions</th>
+		<tr>
+            <th>Username</th>
+            <th>Alias</th>
+            <th>Realm</th>
+            <th>Password</th>
+            <th>Actions</th>
+		</tr>
 	</thead>
 	<tbody>
 	<tr>
-		<td><input placeholder="John.Doe.JR" type="text" id="username"/></td>
-		<td><input placeholder="John Doe Junior" type="text" id="alias"/></td>
-		<td><input placeholder="chat.example.com" type="text" id="realm"/></td>
-		<td><input placeholder="*********" type="password" id="password"/></td>
-		<td><button onclick="javascript:addUser()">Add</button></td>
+		<td><input class="span2" placeholder="John.Doe.JR" type="text" id="username"/></td>
+		<td><input class="span2" placeholder="John Doe Junior" type="text" id="alias"/></td>
+		<td><input class="span2" placeholder="chat.example.com" type="text" id="realm"/></td>
+		<td><input class="span2" placeholder="*********" type="password" id="password"/></td>
+		<td><button class="btn" onclick="javascript:addUser()">Add</button></td>
 	</tr>
-<?php foreach($users as $user): ?>
+    <?php foreach($users as $user): ?>
 	<tr>
 		<td><?php echo $user['username']; ?></td>
 		<td><?php echo $user['alias']; ?></td>
 	 	<td><?php echo $user['realm']; ?></td>
 		<td class="hidden"><?php echo $user['password']; ?></td>
 		<td>
-			<button><a href="?action=userHide&username=<?php echo urlencode($user['username']); ?>">Hide</a></button>
-			<button><a href="?action=userShare&username=<?php echo urlencode($user['username']); ?>">Share</a></button>
-			<button><a href="?action=userDelete&username=<?php echo urlencode($user['username']); ?>">Delete</a></button>
+			<button class="btn"><a href="?action=userHide&username=<?php echo urlencode($user['username']); ?>">Hide</a></button>
+			<button class="btn"><a href="?action=userShare&username=<?php echo urlencode($user['username']); ?>">Share</a></button>
+			<button class="btn"><a href="?action=userDelete&username=<?php echo urlencode($user['username']); ?>">Delete</a></button>
 		</td>
 	</tr>
-<?php endforeach; ?>
+    <?php endforeach; ?>
 	</tbody>
 </table>
+
+<?php $content = ob_get_clean(); ?>
+
+<?php @ob_end_flush(); ob_start(); ?>
 
 <script>
 $().ready(function() {
@@ -68,3 +60,17 @@ function addUser()
 	window.location = url;
 }
 </script>
+
+<?php $scripts = ob_get_clean(); ?>
+
+<?php
+    $tpl = require __DIR__ . "/layout.php";
+    echo str_replace(array(
+                        '%content%',
+                        '%scripts%'
+                     ), array(
+                        $content,
+                        $scripts
+                     ), $tpl);
+?>
+
