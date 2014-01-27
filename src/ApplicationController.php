@@ -227,8 +227,9 @@ class ApplicationController extends Controller
             $client = $this->xmpp;
             $client->setOnline();
 
+            // send messages
             foreach($messages as $message) {
-                $client->sendMessage($message, sprintf("%s@%s", $username, $realm));
+                $client->sendMessage($message, sprintf("%s@%s", $username, $realm), "headline");
             }
         }
 
