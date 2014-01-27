@@ -6,7 +6,7 @@
 <form action="?action=sendMessage" method="POST">
     <label> Select Users
         <select multiple size="2" name="users[]" class="input-lg input-group height-200">
-            <?php if(is_array($users)) foreach($users as $user): ?>
+            <?php foreach($users as $user): ?>
                 <option value="<?php echo sprintf("%s@%s", $user['username'], $user['realm']); ?>">
                     <?php echo $user['alias']; ?>
                 </option>
