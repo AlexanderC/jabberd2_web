@@ -229,7 +229,7 @@ class ApplicationController extends Controller
 
             // send messages
             foreach($messages as $message) {
-                $client->sendMessage($message, sprintf("%s@%s", $username, $realm), "headline");
+                $client->sendMessage($message, sprintf("%s@%s", $username, $realm));
             }
         }
 
