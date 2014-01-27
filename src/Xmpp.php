@@ -119,7 +119,8 @@ class Xmpp
         $message = new Message();
 
         $message->setMessage($text)
-            ->setTo($to);
+            ->setTo($to)
+            ->setType($type);
 
         $this->client->send($message);
     }
