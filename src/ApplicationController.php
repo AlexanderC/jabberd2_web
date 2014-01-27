@@ -229,7 +229,8 @@ class ApplicationController extends Controller
 
             // send messages
             foreach($messages as $message) {
-                $client->sendMessage($message, sprintf("%s@%s", $username, $realm));
+                // only headlines stored offline...
+                $client->sendMessage($message, sprintf("%s@%s", $username, $realm), "headline");
             }
         }
 
