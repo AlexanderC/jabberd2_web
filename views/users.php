@@ -26,7 +26,7 @@
 		<td><?php echo $user['username']; ?></td>
 		<td><?php echo $user['alias']; ?></td>
 	 	<td><?php echo $user['realm']; ?></td>
-		<td class="op-hidden"><?php echo $user['password']; ?></td>
+		<td class="op-hidden"><a href="#" class="editable" data-pk="<?php echo $user['username']; ?>"><?php echo $user['password']; ?></a></td>
 		<td>
 			<button class="btn"><a href="?action=userHide&username=<?php echo urlencode($user['username']); ?>">Hide</a></button>
 			<button class="btn"><a href="?action=userShare&username=<?php echo urlencode($user['username']); ?>">Share</a></button>
@@ -44,9 +44,20 @@
 <script>
 $().ready(function() {
 	$(".op-hidden").on("mouseenter mouseleave", function(e) {
-		if(e.type == "mouseenter") $(this).animate({opacity: 1}, "fast");
-		else $(this).animate({opacity: 0}, "fast");
+        var el = $(this);
+
+        el.stop(true, true);
+
+		if(e.type == "mouseenter") el.animate({opacity: 1}, "fast");
+		else el.animate({opacity: 0}, "fast");
 	});
+
+    $('a.editable').editable({
+        type: 'text',
+        name: 'password',
+        url: '?action=changePass',
+        title: 'Type New Password'
+    });
 });
 
 function addUser()

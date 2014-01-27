@@ -8,6 +8,8 @@
 namespace Jabberd2;
 
 
+use Jabberd2\Exception\InvalidResponseObjectException;
+
 class Controller
 {
     /**
@@ -48,7 +50,7 @@ class Controller
     /**
      * @param string $action
      * @return Response
-     * @throws \InvalidResponseObjectException
+     * @throws Exception\InvalidResponseObjectException
      */
     public function execute($action)
     {
@@ -63,7 +65,7 @@ class Controller
             $response = $this->$method();
 
             if(!($response instanceof Response)) {
-                throw new \InvalidResponseObjectException("Invalid Response object provided");
+                throw new InvalidResponseObjectException("Invalid Response object provided");
             }
 
             return $response;

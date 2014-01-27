@@ -48,7 +48,10 @@ class ApplicationController extends Controller
      */
     protected function executeInstall()
     {
-        $this->pdo->prepare("ALTER TABLE authreg ADD alias VARCHAR(255)")
+        $this->pdo->prepare("
+                ALTER TABLE authreg
+                    ADD alias VARCHAR(255)
+            ")
             ->execute();
 
         return $this->redirectBack();
@@ -111,6 +114,24 @@ class ApplicationController extends Controller
         $view->addParameter('users', $this->pdo->query("SELECT * FROM authreg"));
 
         return new Response($view->run());
+    }
+
+    /**
+     * @return Response
+     */
+    protected function executeChangePass()
+    {
+        $username = $this->get('pk');
+        $password = $this->get('value');
+
+        if(empty($username) || empty($password)) {
+            return new Response("Missing Username/Password", 404);
+        }
+
+        $stmt = $this->pdo->prepare("UPDATE authreg SET password=:password WHERE username=:username");
+        $stmt->execute(array('username' => $username, 'password' => $password));
+
+        return new Response('ok');
     }
 
     /**
