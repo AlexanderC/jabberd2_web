@@ -31,21 +31,26 @@ class Xmpp
     protected $mucRoomsDir;
 
     /**
+     * @var array
+     */
+    protected $config;
+
+    /**
      * {@inherit}
      */
     public function __construct()
     {
-        $config = Config::get('xmpp');
+        $this->config = Config::get('xmpp');
 
-        $this->options = new Options($config->address);
-        $this->options->setUsername($config->username)
-            ->setPassword($config->password);
+        $this->options = new Options($this->config->address);
+        $this->options->setUsername($this->config->username)
+            ->setPassword($this->config->password);
 
         $this->options->setLogger(new FileLogger(Config::get('log_dir')));
 
         $this->client = new Client($this->options);
 
-        $this->mucRoomsDir = rtrim($config->mucdir, "/") . "/";
+        $this->mucRoomsDir = rtrim($this->config->mucdir, "/") . "/";
     }
 
     /**
@@ -92,7 +97,8 @@ class Xmpp
     public function joinChannel($name)
     {
         $channel = new Presence();
-        $channel->setTo($name);
+        $channel->setTo($name)
+            ->setNickName($this->config->alias);
 
         $this->client->send($channel);
 
