@@ -76,16 +76,18 @@ class ApplicationController extends Controller
                 $client->setOnline();
 
                 // send to the users
-                if(is_array($users))
-                foreach($users as $user) {
-                    $client->sendMessage($text, $user);
+                if(is_array($users)) {
+                    foreach($users as $user) {
+                        $client->sendMessage($text, $user);
+                    }
                 }
 
                 // send to the conferences
-                if(is_array($conferences))
-                foreach($conferences as $conference) {
-                    $client->joinChannel($conference);
-                    $client->sendMessage($text, $conference, Message::TYPE_GROUPCHAT);
+                if(is_array($conferences)) {
+                    foreach($conferences as $conference) {
+                        $client->joinChannel($conference);
+                        $client->sendMessage($text, $conference, Message::TYPE_GROUPCHAT);
+                    }
                 }
             }
 
@@ -217,6 +219,18 @@ class ApplicationController extends Controller
 
         $this->pdo->prepare("INSERT INTO authreg (username, realm, password, alias) VALUES (:username, :realm, :password, :alias)")
             ->execute(array('username' => $username, 'realm' => $realm, 'password' => $password, 'alias' => $alias));
+
+        $messages = Config::get('settings')->useradd->messages;
+
+        // send initial messages
+        if(is_array($messages) && !empty($messages)) {
+            $client = $this->xmpp;
+            $client->setOnline();
+
+            foreach($messages as $message) {
+                $client->sendMessage($message, sprintf("%s@%s", $username, $realm));
+            }
+        }
 
         return $this->redirectBack();
     }

@@ -59,7 +59,7 @@ class Config
      */
     protected static function arrayToObject($value)
     {
-        if (is_array($value)) {
+        if (is_array($value) && array_values($value) !== $value) {
             return (object) array_map("Jabberd2\\Config::arrayToObject", $value);
         } else {
             return $value;

@@ -41,7 +41,7 @@ class Xmpp
         $this->options->setUsername($config->username)
             ->setPassword($config->password);
 
-        $this->options->setLogger(new FileLogger(Config::get('log_dir')));
+        $this->options->setLogger(new FileLogger(Config::get('settings')->log_dir));
 
         $this->client = new Client($this->options);
 
