@@ -14,5 +14,15 @@ return array(
         'alias' => 'Doe John', // xmpp admin user alias (used as groupchat name)
         'mucdir' => '/var/spool/mu-conference/rooms' // Mu Conference Jabberd2 Plugin rooms directory
     ),
-    'log_dir' => __DIR__ . "/../logs"
+    'settings' => array(
+        'log_dir' => __DIR__ . "/../logs",
+        'useradd' => array(
+            'messages' => array( // this messages are sent to the user on registration
+                // you must enable offline storage for headline messages,
+                // otherwise it will thrown an error
+                "There are some conferences waiting for you. " .
+                "To join them find 'Join Group Chat' in your application and type [chat-names] as chat name."
+            )
+        )
+    ),
 );
