@@ -1,0 +1,36 @@
+{
+    "name": "alexanderc/jabberd2-web",
+    "description": "Jabberd2 simple web management interface",
+    "minimum-stability": "stable",
+    "authors": [
+        {
+            "name": "AlexanderC",
+            "email": "alexander.moldova@gmail.com"
+        }
+    ],
+    "repositories": [{
+        "type": "package",
+        "package": {
+            "version": "1.0.x-dev",
+            "name": "fabiang/xmpp",
+            "source": {
+                "url": "https://github.com/AlexanderC/xmpp.git",
+                "type": "git",
+                "reference": "master"
+            },
+            "autoload": {
+                "psr-0": {"Fabiang\\Xmpp\\": "src/"}
+            }
+        }
+    }],
+    "require": {
+        "fabiang/xmpp": "1.0.x-dev",
+        "filp/whoops": "1.0.10",
+        "psr/log": "1.0.*@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Jabberd2\\": "./src"
+        }
+    }
+}
