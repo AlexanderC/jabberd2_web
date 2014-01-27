@@ -26,7 +26,7 @@
 		<td><?php echo $user['username']; ?></td>
 		<td><?php echo $user['alias']; ?></td>
 	 	<td><?php echo $user['realm']; ?></td>
-		<td class="hidden"><?php echo $user['password']; ?></td>
+		<td class="op-hidden"><?php echo $user['password']; ?></td>
 		<td>
 			<button class="btn"><a href="?action=userHide&username=<?php echo urlencode($user['username']); ?>">Hide</a></button>
 			<button class="btn"><a href="?action=userShare&username=<?php echo urlencode($user['username']); ?>">Share</a></button>
@@ -43,7 +43,7 @@
 
 <script>
 $().ready(function() {
-	$(".hidden").on("mouseenter mouseleave", function(e) {
+	$(".op-hidden").on("mouseenter mouseleave", function(e) {
 		if(e.type == "mouseenter") $(this).animate({opacity: 1}, "fast");
 		else $(this).animate({opacity: 0}, "fast");
 	});
