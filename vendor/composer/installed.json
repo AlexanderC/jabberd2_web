@@ -58,7 +58,7 @@
         "version_normalized": "1.0.9999999.9999999-dev",
         "source": {
             "type": "git",
-            "url": "https://github.com/AlexanderC/xmpp.git",
+            "url": "https://github.com/fabiang/xmpp.git",
             "reference": "master"
         },
         "type": "library",

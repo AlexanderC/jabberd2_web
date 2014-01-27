@@ -1,7 +1,7 @@
 This is very simple Jabberd2 web interface.
 ===========================================
 
-    To get it working simply edit "app/config.php" file... (@see comments inside)
+    To get it working simply copy "app/config.sample.php" into "app/config.php" file and edit it... (@see comments inside)
 
 Currently supports:
     
