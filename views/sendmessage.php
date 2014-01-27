@@ -6,15 +6,15 @@
 <form action="?action=sendMessage" method="POST">
     <label> Select Users
         <select multiple size="2" name="users[]" class="input-lg input-group height-200">
-            <?php //foreach($users as $user): ?>
-                <option value="<?php //echo sprintf("%s@%s", $user['username'], $user['realm']); ?>">
-                    <?php //echo $user['alias']; ?>
+            <?php foreach($users as $user): ?>
+                <option value="<?php echo sprintf("%s@%s", $user['username'], $user['realm']); ?>">
+                    <?php echo $user['alias']; ?>
                 </option>
-            <?php //endforeach; ?>
+            <?php endforeach; ?>
         </select>
     </label>
 
-    <label> Select Conferences
+    <label> Select Conferences <SOMETIMES NOT WORKING>
         <select multiple size="2" name="conferences[]" class="input-lg input-group height-200">
             <?php foreach($channels as $channel): ?>
             <option value="<?php echo $channel['name']; ?>">

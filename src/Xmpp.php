@@ -41,6 +41,8 @@ class Xmpp
         $this->options->setUsername($config->username)
             ->setPassword($config->password);
 
+        $this->options->setLogger(new FileLogger(Config::get('log_dir')));
+
         $this->client = new Client($this->options);
 
         $this->mucRoomsDir = rtrim($config->mucdir, "/") . "/";
@@ -166,6 +168,8 @@ class Xmpp
      */
     public function __destruct()
     {
-        $this->client->disconnect();
+        if(is_object($this->client)) {
+            $this->client->disconnect();
+        }
     }
 } 

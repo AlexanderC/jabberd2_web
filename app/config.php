@@ -12,5 +12,6 @@ return array(
         'username' => 'ross.tanner',
         'password' => 'WQdm7gQU9oeGUC3GnotT',
         'mucdir' => __DIR__ . '/../tmp/rooms' // mu-conference folder
-    )
+    ),
+    'log_dir' => __DIR__ . "/../logs"
 );

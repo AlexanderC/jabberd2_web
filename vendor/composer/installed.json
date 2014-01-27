@@ -1,104 +1,5 @@
 [
     {
-        "name": "psr/log",
-        "version": "1.0.0",
-        "version_normalized": "1.0.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/php-fig/log.git",
-            "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/php-fig/log/zipball/fe0936ee26643249e916849d48e3a51d5f5e278b",
-            "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b",
-            "shasum": ""
-        },
-        "time": "2012-12-21 11:40:51",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Psr\\Log\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "PHP-FIG",
-                "homepage": "http://www.php-fig.org/"
-            }
-        ],
-        "description": "Common interface for logging libraries",
-        "keywords": [
-            "log",
-            "psr",
-            "psr-3"
-        ]
-    },
-    {
-        "name": "fabiang/xmpp",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/fabiang/xmpp.git",
-            "reference": "3856ca5eadf0ba3da2774495fa4cd241cd8fbff7"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/fabiang/xmpp/zipball/3856ca5eadf0ba3da2774495fa4cd241cd8fbff7",
-            "reference": "3856ca5eadf0ba3da2774495fa4cd241cd8fbff7",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3",
-            "psr/log": "*"
-        },
-        "require-dev": {
-            "behat/behat": "2.4.*@stable",
-            "monolog/monolog": "*",
-            "phpunit/phpunit": "~3.7"
-        },
-        "suggest": {
-            "monolog/monolog": "Allows more advanced logging of the application flow"
-        },
-        "time": "2014-01-23 13:32:40",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.0.x-dev"
-            }
-        },
-        "installation-source": "source",
-        "autoload": {
-            "psr-0": {
-                "Fabiang\\Xmpp\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-2-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Fabian Grutschus",
-                "email": "f.grutschus@lubyte.de",
-                "homepage": "http://www.lubyte.de/",
-                "role": "developer"
-            }
-        ],
-        "description": "Library for XMPP protocol connections (Jabber)",
-        "homepage": "https://github.com/fabiang/xmpp",
-        "keywords": [
-            "jabber",
-            "xmpp"
-        ]
-    },
-    {
         "name": "filp/whoops",
         "version": "1.0.10",
         "version_normalized": "1.0.10.0",
@@ -149,6 +50,68 @@
             "silex-provider",
             "whoops",
             "zf2"
+        ]
+    },
+    {
+        "name": "fabiang/xmpp",
+        "version": "1.0.x-dev",
+        "version_normalized": "1.0.9999999.9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/AlexanderC/xmpp.git",
+            "reference": "master"
+        },
+        "type": "library",
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Fabiang\\Xmpp\\": "src/"
+            }
+        }
+    },
+    {
+        "name": "psr/log",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/php-fig/log.git",
+            "reference": "a78d6504ff5d4367497785ab2ade91db3a9fbe11"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/php-fig/log/zipball/a78d6504ff5d4367497785ab2ade91db3a9fbe11",
+            "reference": "a78d6504ff5d4367497785ab2ade91db3a9fbe11",
+            "shasum": ""
+        },
+        "time": "2014-01-18 15:33:09",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0.x-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-0": {
+                "Psr\\Log\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "PHP-FIG",
+                "homepage": "http://www.php-fig.org/"
+            }
+        ],
+        "description": "Common interface for logging libraries",
+        "keywords": [
+            "log",
+            "psr",
+            "psr-3"
         ]
     }
 ]

@@ -72,8 +72,6 @@ class ApplicationController extends Controller
                 $client = $this->xmpp;
                 $client->setOnline();
 
-                var_dump($client);exit;
-
                 // send to the users
                 if(is_array($users))
                 foreach($users as $user) {
