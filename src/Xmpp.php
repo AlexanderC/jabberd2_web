@@ -31,26 +31,21 @@ class Xmpp
     protected $mucRoomsDir;
 
     /**
-     * @var array
-     */
-    protected $config;
-
-    /**
      * {@inherit}
      */
     public function __construct()
     {
-        $this->config = Config::get('xmpp');
+        $config = Config::get('xmpp');
 
-        $this->options = new Options($this->config->address);
-        $this->options->setUsername($this->config->username)
-            ->setPassword($this->config->password);
+        $this->options = new Options($config->address);
+        $this->options->setUsername($config->username)
+            ->setPassword($config->password);
 
         $this->options->setLogger(new FileLogger(Config::get('log_dir')));
 
         $this->client = new Client($this->options);
 
-        $this->mucRoomsDir = rtrim($this->config->mucdir, "/") . "/";
+        $this->mucRoomsDir = rtrim($config->mucdir, "/") . "/";
     }
 
     /**
@@ -92,13 +87,14 @@ class Xmpp
      * ex. channelname@conference.myjabber.com
      *
      * @param string $name
+     * @param bool|string $alias
      * @return Presence
      */
-    public function joinChannel($name)
+    public function joinChannel($name, $alias = false)
     {
         $channel = new Presence();
         $channel->setTo($name)
-            ->setNickName($this->config->alias);
+            ->setNickName($alias ? : Config::get('xmpp')->alias);
 
         $this->client->send($channel);
 
