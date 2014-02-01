@@ -100,7 +100,7 @@ class ApplicationController extends Controller
         $view->setView($this->view);
         $view->setParameters(array(
                                   'channels' => $channels,
-                                  'users' => $this->pdo->query("SELECT * FROM authreg")
+                                  'users' => $this->pdo->query("SELECT * FROM authreg") ? : array()
                              ));
 
         return new Response($view->run());
@@ -113,7 +113,7 @@ class ApplicationController extends Controller
     {
         $view = new BufferedView();
         $view->setView($this->view);
-        $view->addParameter('users', $this->pdo->query("SELECT * FROM authreg"));
+        $view->addParameter('users', $this->pdo->query("SELECT * FROM authreg") ? : array());
 
         return new Response($view->run());
     }
