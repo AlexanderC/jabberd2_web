@@ -37,10 +37,7 @@ class ApplicationController extends Controller
      */
     protected function executeIndex()
     {
-        $view = new BufferedView();
-        $view->setView($this->view);
-
-        return new Response($view);
+        return new Response($this->getView());
     }
 
     /**
@@ -96,8 +93,7 @@ class ApplicationController extends Controller
 
         $channels = $this->xmpp->getMucChannels();
 
-        $view = new BufferedView();
-        $view->setView($this->view);
+        $view = $this->getView();
         $view->setParameters(array(
                                   'channels' => $channels,
                                   'users' => $this->pdo->query("SELECT * FROM authreg") ? : array()
@@ -111,8 +107,7 @@ class ApplicationController extends Controller
      */
     protected function executeUsers()
     {
-        $view = new BufferedView();
-        $view->setView($this->view);
+        $view = $this->getView();
         $view->addParameter('users', $this->pdo->query("SELECT * FROM authreg") ? : array());
 
         return new Response($view);

@@ -71,4 +71,16 @@ class Controller
             return $response;
         }
     }
+
+    /**
+     * @param bool $buffered
+     * @return View
+     */
+    protected function getView($buffered = true)
+    {
+        $view = $buffered ? new BufferedView() : new View();
+        $view->setView($this->view);
+
+        return $view;
+    }
 } 
