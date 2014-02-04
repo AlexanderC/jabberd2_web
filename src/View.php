@@ -96,4 +96,12 @@ class View
 
         require($viewFile);
     }
+
+    /**
+     * {@inherit}
+     */
+    public function __toString()
+    {
+        return $this->run();
+    }
 } 

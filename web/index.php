@@ -29,9 +29,8 @@ unset($configData);
 
 $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "index";
 
-$pdoConnection = new PdoConnection();
 $controller = new ApplicationController(
-    $pdoConnection->getConnection(),
+    new PdoConnection(),
     new Xmpp()
 );
 

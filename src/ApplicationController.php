@@ -23,12 +23,12 @@ class ApplicationController extends Controller
     protected $xmpp;
 
     /**
-     * @param \PDO $pdo
+     * @param PdoConnection $pdo
      * @param Xmpp $xmpp
      */
-    public function __construct(\PDO $pdo, Xmpp $xmpp)
+    public function __construct(PdoConnection $pdo, Xmpp $xmpp)
     {
-        $this->pdo = $pdo;
+        $this->pdo = $pdo->getConnection();
         $this->xmpp = $xmpp;
     }
 
@@ -40,7 +40,7 @@ class ApplicationController extends Controller
         $view = new BufferedView();
         $view->setView($this->view);
 
-        return new Response($view->run());
+        return new Response($view);
     }
 
     /**
@@ -103,7 +103,7 @@ class ApplicationController extends Controller
                                   'users' => $this->pdo->query("SELECT * FROM authreg") ? : array()
                              ));
 
-        return new Response($view->run());
+        return new Response($view);
     }
 
     /**
@@ -115,7 +115,7 @@ class ApplicationController extends Controller
         $view->setView($this->view);
         $view->addParameter('users', $this->pdo->query("SELECT * FROM authreg") ? : array());
 
-        return new Response($view->run());
+        return new Response($view);
     }
 
     /**
