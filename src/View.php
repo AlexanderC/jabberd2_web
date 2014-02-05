@@ -28,11 +28,32 @@ class View
     protected $viewTpl;
 
     /**
+     * @var string
+     */
+    protected $layout = "layout";
+
+    /**
      * {@inherit}
      */
     public function __construct()
     {
         $this->viewTpl = __DIR__ . "/../views/%s.php";
+    }
+
+    /**
+     * @param string $layout
+     */
+    public function setLayout($layout)
+    {
+        $this->layout = $layout;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLayout()
+    {
+        return $this->layout;
     }
 
     /**
@@ -85,15 +106,20 @@ class View
     public function run()
     {
         $viewFile = sprintf($this->viewTpl, $this->view);
+        $layoutFile = sprintf($this->viewTpl, $this->layout);
 
-        if(!is_file($viewFile) || !is_readable($viewFile)) {
-            throw new MissingViewException("Missing view [{$this->view}]: {$viewFile}");
+        if(!is_file($viewFile) || !is_readable($viewFile)
+            || !is_file($layoutFile) || !is_readable($layoutFile)) {
+            throw new MissingViewException(
+                "Missing view [{$this->view}]: {$viewFile} OR layout [{$this->layout}]: {$layoutFile}"
+            );
         }
 
         foreach($this->getParameters() as $var => $value) {
             $$var = $value;
         }
 
+        $buffer = new ViewBuffer($layoutFile);
         require($viewFile);
     }
 

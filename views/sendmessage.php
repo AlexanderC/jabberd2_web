@@ -1,4 +1,4 @@
-<?php @ob_end_flush(); ob_start(); ?>
+<?php $buffer->listen(); ?>
 
 <a href="?">Go Back!</a>
 <hr/>
@@ -30,17 +30,6 @@
     <button class="btn">Submit</button>
 </form>
 
-<?php $content = ob_get_clean(); ?>
+<?php $buffer->collect("content"); ?>
 
-<?php
-$scripts = "";
-
-$tpl = require __DIR__ . "/layout.php";
-echo str_replace(array(
-                      '%content%',
-                      '%scripts%'
-                 ), array(
-                         $content,
-                         $scripts
-                    ), $tpl);
-?>
+<?php echo $buffer; ?>

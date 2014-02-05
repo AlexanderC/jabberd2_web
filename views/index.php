@@ -1,4 +1,4 @@
-<?php @ob_end_flush(); ob_start(); ?>
+<?php $buffer->listen(); ?>
 
 <h1>
 	Control Panel <br/>
@@ -14,17 +14,6 @@
     </li>
 </ul>
 
-<?php $content = ob_get_clean(); ?>
+<?php $buffer->collect("content"); ?>
 
-<?php
-$scripts = "";
-
-$tpl = require __DIR__ . "/layout.php";
-echo str_replace(array(
-                      '%content%',
-                      '%scripts%'
-                 ), array(
-                         $content,
-                         $scripts
-                    ), $tpl);
-?>
+<?php echo $buffer; ?>
