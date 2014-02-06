@@ -128,6 +128,6 @@ class View
      */
     public function __toString()
     {
-        return $this->run();
+        return (string) $this->run();
     }
 } 
